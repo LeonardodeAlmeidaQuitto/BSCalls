@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiveCall</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section id="lobby" class="screen lobby">
+      <div class="logo">Live<span>Call</span></div>
+      <h1>Chamadas e transmissão de tela</h1>
+      <p>Crie uma sala ou entre em uma chamada existente.</p>
+
+      <div class="lobby-card">
+        <label for="name">Seu nome</label>
+        <input id="name" type="text" maxlength="40" placeholder="Digite seu nome">
+
+        <label for="room">Código da sala</label>
+        <input id="room" type="text" maxlength="50" placeholder="Ex.: sala-123">
+
+        <div class="lobby-buttons">
+          <button id="createRoom" class="primary">Criar sala</button>
+          <button id="joinRoom" class="secondary">Entrar na sala</button>
+        </div>
+      </div>
+
+      <p class="tip">
+        Para câmera e microfone funcionarem em produção, publique o site com HTTPS.
+      </p>
+    </section>
+
+    <section id="meeting" class="screen meeting hidden">
+      <header class="topbar">
+        <div>
+          <div class="logo small">Live<span>Call</span></div>
+          <div class="room-info">Sala: <strong id="currentRoom"></strong></div>
+        </div>
+
+        <button id="copyRoom" class="copy-button">Copiar convite</button>
+      </header>
+
+      <div class="content">
+        <section class="video-area">
+          <div id="videos" class="videos"></div>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-icon">👥</div>
+            <h2>Aguardando participantes</h2>
+            <p>Envie o convite da sala para outra pessoa.</p>
+          </div>
+
+          <div class="controls">
+            <button id="toggleMic" class="control active" title="Microfone">🎤</button>
+            <button id="toggleCamera" class="control active" title="Câmera">📷</button>
+            <button id="shareScreen" class="control screen-share" title="Compartilhar tela">🖥️</button>
+            <button id="leaveCall" class="control danger" title="Sair da chamada">📞</button>
+          </div>
+        </section>
+
+        <aside class="chat">
+          <div class="chat-header">
+            <h2>Chat</h2>
+            <span id="participantCount">0</span>
+          </div>
+
+          <div id="messages" class="messages"></div>
+
+          <form id="chatForm" class="chat-form">
+            <input id="chatInput" maxlength="500" autocomplete="off" placeholder="Digite uma mensagem...">
+            <button type="submit">➤</button>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <template id="videoTemplate">
+    <div class="video-card">
+      <video autoplay playsinline></video>
+      <div class="video-name"></div>
+    </div>
+  </template>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
