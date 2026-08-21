@@ -1,0 +1,14 @@
+{
+  "name": "chamada-webrtc",
+  "version": "1.0.0",
+  "description": "Site de chamadas, áudio, vídeo e compartilhamento de tela usando WebRTC e Socket.IO.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
