@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1020">
   <title>LiveCall</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -16,10 +15,10 @@
 
       <div class="lobby-card">
         <label for="name">Seu nome</label>
-        <input id="name" type="text" maxlength="40" placeholder="Digite seu nome" autocomplete="name">
+        <input id="name" type="text" maxlength="40" placeholder="Digite seu nome">
 
         <label for="room">Código da sala</label>
-        <input id="room" type="text" maxlength="50" placeholder="Ex.: sala-123" autocomplete="off">
+        <input id="room" type="text" maxlength="50" placeholder="Ex.: sala-123">
 
         <div class="lobby-buttons">
           <button id="createRoom" class="primary">Criar sala</button>
@@ -27,20 +26,19 @@
         </div>
       </div>
 
-      <section class="history-card">
-        <div class="history-title">
-          <div>
-            <h2>Chamadas anteriores</h2>
-            <p>Salvas neste navegador.</p>
-          </div>
-          <button id="clearHistory" class="clear-history">Limpar</button>
-        </div>
-        <div id="callHistory" class="call-history"></div>
-      </section>
-
       <p class="tip">
-        Câmera, microfone e compartilhamento de tela precisam de HTTPS e de um navegador compatível.
+        Para câmera e microfone funcionarem em produção, publique o site com HTTPS.
       </p>
+
+      <div class="recent-library">
+        <div class="recent-title">
+          <div>
+            <strong>Chamadas recentes</strong>
+            <span>Salvas neste navegador</span>
+          </div>
+        </div>
+        <div id="recentCalls" class="recent-calls"></div>
+      </div>
     </section>
 
     <section id="meeting" class="screen meeting hidden">
@@ -87,6 +85,13 @@
       </div>
     </section>
   </main>
+
+  <template id="videoTemplate">
+    <div class="video-card">
+      <video autoplay playsinline></video>
+      <div class="video-name"></div>
+    </div>
+  </template>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
